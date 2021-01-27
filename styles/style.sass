@@ -1,0 +1,71 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700)
+@mixin size($w,$h:$w)
+  width: $w
+  height: $h
+
+@mixin flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+
+html,body
+  background-color: #87CEFA
+  font-family: "Roboto"  
+  +flexCenter
+  flex-direction: column
+  margin: 0
+  padding: 0  
+.game
+  +size(660px,500px)
+  border: solid 2px #000
+  position: relative
+  overflow: hidden
+  margin-top: 50px
+  background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif) no-repeat
+  background-size: cover
+.bird
+  background-image: url(https://toppng.com/uploads/preview/flappy-bird-pixel-art-flappy-bird-1156289438531sspmvwnk.png)
+  background-size: cover
+  background-repeat: no-repeat
+  position: absolute
+.tubeStyle
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT15inkHdiBP0xSb1yDPwEqxffI9UfmH8GUdg&usqp=CAU)
+  background-size: cover
+  background-repeat: no-repeat
+  position: absolute
+  bottom: 0
+  
+.info
+  +size(660px,500px)
+  +flexCenter
+  flex-direction: column
+  background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif)
+  background-size: cover
+  position: absolute
+  z-index: 10
+  .startgame
+    +flexCenter
+    flex-direction: column
+    h1
+      color: #fff
+    .start
+      width: 100px
+      height: 35px
+      border: 0
+      background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFGNdmF08vC0an_utslqbjWtN-EUMnqk6g7A&usqp=CAU) no-repeat
+      background-size: cover
+      margin-top: 20px
+      cursor: pointer
+    .infoText
+      font-size: 30px      
+  .grade
+    +flexCenter
+    flex-direction: column
+    display: none
+    .restart
+      width: 100px
+      height: 35px
+      border: 0
+      background: url(https://www.jschally.com/restart.png) no-repeat
+      background-size: cover
+      cursor: pointer

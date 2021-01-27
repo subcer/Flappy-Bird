@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">    
+    <title>Flappy Bird 物件導向</title>
+</head>
+<body>
+    <div class="game">
+        <div class="bird"></div>
+        <div class="tube1 tubeStyle"></div>
+        <div class="tube2 tubeStyle"></div>
+        <div class="tube3 tubeStyle"></div>
+        <div class="tube4 tubeStyle"></div>
+        <div class="tube5 tubeStyle"></div>
+        <div class="tube6 tubeStyle"></div>
+        <div class="info">
+            <div class="startgame">
+                <h1>Flappy Bird</h1>
+                <div class="infoText">Start Game</div><button class="start" onclick="game.startGame()"></button>
+            </div>
+            <div class="grade">
+                <h1>總分</h1>
+                <h3>0</h3><button class="restart" onclick="game.restartGame()"></button>
+            </div>
+        </div>
+    </div>
+    <h3>按向上健,往上飛</h3>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/action.js"></script>
+</body>
+</html>

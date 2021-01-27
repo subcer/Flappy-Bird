@@ -1,0 +1,129 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700);
+html, body {
+  background-color: #87CEFA;
+  font-family: "Roboto";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.game {
+  width: 660px;
+  height: 500px;
+  border: solid 2px #000;
+  position: relative;
+  overflow: hidden;
+  margin-top: 50px;
+  background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif) no-repeat;
+  background-size: cover;
+}
+
+.bird {
+  background-image: url(https://toppng.com/uploads/preview/flappy-bird-pixel-art-flappy-bird-1156289438531sspmvwnk.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+.tubeStyle {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT15inkHdiBP0xSb1yDPwEqxffI9UfmH8GUdg&usqp=CAU);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+}
+
+.info {
+  width: 660px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif);
+  background-size: cover;
+  position: absolute;
+  z-index: 10;
+}
+
+.info .startgame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.info .startgame h1 {
+  color: #fff;
+}
+
+.info .startgame .start {
+  width: 100px;
+  height: 35px;
+  border: 0;
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFGNdmF08vC0an_utslqbjWtN-EUMnqk6g7A&usqp=CAU) no-repeat;
+  background-size: cover;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.info .startgame .infoText {
+  font-size: 30px;
+}
+
+.info .grade {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+}
+
+.info .grade .restart {
+  width: 100px;
+  height: 35px;
+  border: 0;
+  background: url(https://www.jschally.com/restart.png) no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
