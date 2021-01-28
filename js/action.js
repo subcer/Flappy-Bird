@@ -42,8 +42,8 @@ Bird.prototype.update = function(){
   if(this.position.y < 0){
     this.position.y = 0
   }
-  if(this.position.y > 450){
-    this.position.y = 450
+  if(this.position.y > 470){
+    this.position.y = 470
   }
   this.updateCss()
 }
