@@ -37,6 +37,7 @@ var Bird = function(){
 }
 Bird.prototype = Object.create(GameObject.prototype)
 Bird.prototype.constructor = Bird.constructor
+
 //設定鳥 到最頂端 跟 底端的判斷
 Bird.prototype.update = function(){
   if(this.position.y < 0){
@@ -71,7 +72,10 @@ TubeBottom.prototype.constructor = TubeBottom.constructor
 TubeBottom.prototype.update = function(){
   if(this.position.x <= -60){    
     this.position.x = 660
-    
+    // if(this.position.x == 660){
+    //   Game.gradeOpen = true
+    //   console.log(Game.gradeOpen)
+    // }
     if(this.selector == ".tube1"){
       tube1 = new TubeBottom({x:this.position.x},0,this.selector)
     }
@@ -124,7 +128,7 @@ var Game = function(){
   this.grade = 0 //成績
   this.gNumber = 1 //成績加速門檻
   this.addSpeed = 0 //加速
-  this.gradeOpen = false
+  this.gradeOpen = true //計分開關
   this.keyboard()  
   this.control = {}
   //this.startGame()
@@ -198,8 +202,20 @@ Game.prototype.restartGame = function(){
 Game.prototype.startGameMain = function(){
   let _this = this// 在gameTime 裡面的 function  this會指向 自己的function 所以要在設定一個_this 來指定 Game 的this
   var gameTime = setInterval(function(){
+    
+    //判斷 在管子回到 660位置時 把gradeOpen開關 打開 給計分的位置
+    if(tube1.position.x == 660){
+      _this.gradeOpen = true
+    }
+    if(tube3.position.x == 660){
+      _this.gradeOpen = true
+    }
+    if(tube5.position.x == 660){
+      _this.gradeOpen = true
+    }
+    
+    //每10分加速
     if(_this.grade != null){
-      
       if(_this.grade == (10*_this.gNumber)){
         _this.addSpeed++
         _this.gNumber++
@@ -212,21 +228,28 @@ Game.prototype.startGameMain = function(){
       tube6.position.x -= 1+_this.addSpeed
     }     
     
-    //計算成績
-    if(bird.position.x == tube1.position.x){
-      _this.grade += 1
-      $(".grade h3").text(_this.grade)       
-    }   
-    if(bird.position.x == tube3.position.x){
-      _this.grade += 1
-      $(".grade h3").text(_this.grade)
-    }
-    if(bird.position.x == tube5.position.x){
-      _this.grade += 1
-      $(".grade h3").text(_this.grade)
-    }    
     
-    //鳥與管子碰撞 
+    //計算成績
+    if(tube1.position.x <= bird.position.x && _this.gradeOpen == true){
+      _this.grade++
+      _this.gradeOpen = false
+      $(".grade h3").text(_this.grade)
+      $(".actionGrade").text(_this.grade)
+    }   
+    if(tube3.position.x <= bird.position.x && _this.gradeOpen == true){
+      _this.grade++
+      _this.gradeOpen = false
+      $(".grade h3").text(_this.grade)
+      $(".actionGrade").text(_this.grade)
+    }  
+    if(tube5.position.x <= bird.position.x && _this.gradeOpen == true){
+      _this.grade++
+      _this.gradeOpen = false
+      $(".grade h3").text(_this.grade)
+      $(".actionGrade").text(_this.grade)
+    }        
+    
+   //鳥與管子碰撞 
     if(tube1.collide(bird)){
       console.log("hit a tube1")
       clearInterval(gameTime)
@@ -273,15 +296,24 @@ Game.prototype.startGameMain = function(){
     
     //按鍵向上功能及自動向下
     if(_this.control["ArrowUp"]){
+      if(_this.grade >= 30){
+        bird.position.y -= 10
+      }
       bird.position.y -= 6
       bird.rotate = -30
       //console.log(bird.position.y)
     }
     else if(_this.control[" "]){
+      if(_this.grade >= 30){
+        bird.position.y -= 10
+      }
       bird.position.y -= 6
       bird.rotate = -30
     }
     else{
+      if(_this.grade >= 30){
+        bird.position.y += 10
+      }
       bird.position.y += 6
       bird.rotate = 30
       //console.log(bird.position.y)      
