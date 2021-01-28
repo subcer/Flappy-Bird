@@ -30,6 +30,16 @@ html, body {
   background-size: cover;
 }
 
+.game .actionGrade {
+  color: #fff;
+  font-size: 60px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  z-index: 1;
+  margin-left: -17px;
+}
+
 .bird {
   background-image: url(https://www.pngkit.com/png/full/955-9550654_flappy-bird-pixel-art-flappy-bird.png);
   background-size: cover;
