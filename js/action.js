@@ -20,7 +20,7 @@ GameObject.prototype.updateCss = function(){
 }
 //設定碰撞
 GameObject.prototype.collide = function(otherObject){
-  var paddingXY = 7 //設定一個數字 把判斷範圍往內縮
+  var paddingXY = 1 //設定一個數字 把判斷範圍往內縮
   //x 位置碰撞判斷
   var inRangeX = (otherObject.position.x+paddingXY > this.position.x && otherObject.position.x+paddingXY < this.position.x + this.size.width) || (otherObject.position.x + otherObject.size.width-paddingXY > this.position.x && otherObject.position.x + otherObject.size.width-paddingXY < this.position.x + this.size.width)
   //y 位置碰撞判斷
