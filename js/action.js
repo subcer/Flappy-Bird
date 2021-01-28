@@ -1,6 +1,6 @@
 console.clear()
-//設定一個 函式來接收  size,position,rotate,selector  為一個通用模組
 
+//設定一個 函式來接收  size,position,rotate,selector  為一個通用模組
 var GameObject = function(size,position,rotate,selector){
   this.selector = selector
   this.$el = $(selector)
@@ -21,12 +21,16 @@ GameObject.prototype.updateCss = function(){
 //設定碰撞
 GameObject.prototype.collide = function(otherObject){
   var paddingXY = 7 //設定一個數字 把判斷範圍往內縮
+  //x 位置碰撞判斷
   var inRangeX = (otherObject.position.x+paddingXY > this.position.x && otherObject.position.x+paddingXY < this.position.x + this.size.width) || (otherObject.position.x + otherObject.size.width-paddingXY > this.position.x && otherObject.position.x + otherObject.size.width-paddingXY < this.position.x + this.size.width)
+  //y 位置碰撞判斷
   var inRangeY = (otherObject.position.y+paddingXY > this.position.y && otherObject.position.y+paddingXY < this.position.y + this.size.height) || (otherObject.position.y + otherObject.size.height -paddingXY > this.position.y && otherObject.position.y + otherObject.size.height-paddingXY  < this.position.y + this.size.height)
   return inRangeX && inRangeY
 }
+
+//鳥
 var Bird = function(){
-  this.size = { width: 50, height: 50 }
+  this.size = { width: 30, height: 30 }
   this.position = {x: 30,y: 225}
   this.rotate = 0 
   GameObject.call(this,this.size,this.position,this.rotate,".bird")
@@ -46,6 +50,7 @@ Bird.prototype.update = function(){
 var bird = new Bird()
 
 var tubeHeight = 0 //初始化 tubeHeight
+//下方管子
 var TubeBottom = function(position,rotate,selector){
   tubeHeight = Math.floor(Math.random()*5)
   //console.log(tubeHeight+"Bottom")
@@ -79,7 +84,7 @@ TubeBottom.prototype.update = function(){
   }
   this.updateCss()
 }
-
+//上方管子
 var TubeTop = function(position,rotate,selector){  
   //console.log(tubeHeight+"")
   this.size = {
@@ -114,19 +119,6 @@ TubeTop.prototype.update = function(){
   this.updateCss()
 }
 
-// var tube1 = new TubeBottom({x: 180},0,".tube1")
-// var tube2 = new TubeTop({x: 180},180,".tube2")
-// var tube3 = new TubeBottom({x: 420},0,".tube3")
-// var tube4 = new TubeTop({x: 420},180,".tube4")
-// var tube5 = new TubeBottom({x: 660},0,".tube5")
-// var tube6 = new TubeTop({x: 660},180,".tube6")
-
-
-// var tube3 = new Tube({width: 60, height: 100},{x: 375,y: 400},0,".tube3")
-// var tube4 = new Tube({width: 60, height: 300},{x: 375,y: 0},180,".tube4")
-// var tube5 = new Tube({width: 60, height: 300},{x: 525,y: 200},0,".tube5")
-// var tube6 = new Tube({width: 60, height: 100},{x: 525,y: 0},180,".tube6")
-
 //遊戲開始 控制 主體
 var Game = function(){
   this.grade = 0 //成績
@@ -137,6 +129,7 @@ var Game = function(){
   this.control = {}
   //this.startGame()
 }
+//鍵盤控制功能
 Game.prototype.keyboard = function(){
   let _this = this// 在keydown 裡面的 function  this會指向 自己的function 所以要在設定一個_this 來指定 Game 的this
   $(window).keydown(function(evt){    
@@ -173,6 +166,7 @@ Game.prototype.startGame = function(){
     }
   },1000) 
 }
+//重新開始
 Game.prototype.restartGame = function(){
   let _this = this// 在gameStart 裡面的 function  this會指向 自己的function 所以要在設定一個_this 來指定 Game 的this
   var time = 3
@@ -232,8 +226,6 @@ Game.prototype.startGameMain = function(){
       $(".grade h3").text(_this.grade)
     }    
     
-    
-    
     //鳥與管子碰撞 
     if(tube1.collide(bird)){
       console.log("hit a tube1")
@@ -281,12 +273,16 @@ Game.prototype.startGameMain = function(){
     
     //按鍵向上功能及自動向下
     if(_this.control["ArrowUp"]){
-      bird.position.y -= 5
+      bird.position.y -= 6
       bird.rotate = -30
       //console.log(bird.position.y)
     }
+    else if(_this.control[" "]){
+      bird.position.y -= 6
+      bird.rotate = -30
+    }
     else{
-      bird.position.y += 5
+      bird.position.y += 6
       bird.rotate = 30
       //console.log(bird.position.y)      
     }
