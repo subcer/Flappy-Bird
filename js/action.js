@@ -30,7 +30,7 @@ GameObject.prototype.collide = function(otherObject){
 
 //鳥
 var Bird = function(){
-  this.size = { width: 30, height: 30 }
+  this.size = { width: 40, height: 28 }
   this.position = {x: 30,y: 225}
   this.rotate = 0 
   GameObject.call(this,this.size,this.position,this.rotate,".bird")
