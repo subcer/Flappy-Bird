@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700);
 html, body {
-  background-color: #87CEFA;
+  background-color: #222;
   font-family: "Roboto";
   display: -webkit-box;
   display: -ms-flexbox;
@@ -21,7 +21,7 @@ html, body {
 
 .game {
   width: 660px;
-  height: 500px;
+  height: 625px;
   border: solid 2px #000;
   position: relative;
   overflow: hidden;
@@ -57,7 +57,7 @@ html, body {
 
 .info {
   width: 660px;
-  height: 500px;
+  height: 625px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,7 +71,7 @@ html, body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif);
+  background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif) no-repeat;
   background-size: cover;
   position: absolute;
   z-index: 10;
@@ -136,4 +136,24 @@ html, body {
   background-size: cover;
   cursor: pointer;
 }
+h3{
+  color: #fff;
+}
 /*# sourceMappingURL=style.css.map */
+
+@media screen and (max-width: 480px) {
+  html,body{
+    width:100%;
+  }
+  .game{
+    width:100%;
+    margin-top: 0;
+    border: 0;
+  }
+  .info{
+    width:100%;
+  }
+  h3{
+    text-align: center;
+  }
+}

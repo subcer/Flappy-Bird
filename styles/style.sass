@@ -9,12 +9,14 @@
   align-items: center
 
 html,body
-  background-color: #87CEFA
+  background-color: #222
   font-family: "Roboto"  
   +flexCenter
   flex-direction: column
   margin: 0
-  padding: 0  
+  padding: 0
+h3
+  color: #fff
 .game
   +size(660px,500px)
   border: solid 2px #000
@@ -23,8 +25,16 @@ html,body
   margin-top: 50px
   background: url(https://healeycodes.com/bf53663c1cd5c3e03cf4a29bce51856e/flappy-bird.gif) no-repeat
   background-size: cover
+  .actionGrade
+    color: #fff
+    font-size: 60px
+    position: absolute
+    top: 35%
+    left: 50%
+    z-index: 1
+    margin-left: -17px
 .bird
-  background-image: url(https://toppng.com/uploads/preview/flappy-bird-pixel-art-flappy-bird-1156289438531sspmvwnk.png)
+  background-image: url(https://www.pngkit.com/png/full/955-9550654_flappy-bird-pixel-art-flappy-bird.png)
   background-size: cover
   background-repeat: no-repeat
   position: absolute
