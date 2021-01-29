@@ -129,8 +129,10 @@ var Game = function(){
   this.gNumber = 1 //成績加速門檻
   this.addSpeed = 0 //加速
   this.gradeOpen = true //計分開關
-  this.keyboard()  
-  this.control = {}
+  this.keyboard()//鍵盤事件
+  this.mouseEvt()//滑鼠事件
+  this.touchEvt()//處控事件
+  this.control = {}//接收控制鍵 obj
   //this.startGame()
 }
 //鍵盤控制功能
@@ -145,13 +147,37 @@ Game.prototype.keyboard = function(){
     console.log(_this.control)
   })
 }
+//滑鼠控制功能
+Game.prototype.mouseEvt = function(){
+  let _this = this// 在keydown 裡面的 function  this會指向 自己的function a所以要在設定一個_this 來指定 Game 的this
+  $(".game").mousedown(function(evt){    
+    _this.control["mousedown"] = true
+    console.log(_this.control)
+  })
+  $(".game").mouseup(function(evt){    
+    _this.control["mousedown"] = false
+    console.log(_this.control)
+  })
+}
+//觸控控制功能
+Game.prototype.touchEvt = function(){
+  let _this = this// 在keydown 裡面的 function  this會指向 自己的function 所以要在設定一個_this 來指定 Game 的this
+  $(".game").on("touchstart",function(evt){    
+    _this.control["touchstart"] = true
+    console.log(_this.control)
+  })
+  $(".game").on("touchend",function(evt){    
+    _this.control["touchstart"] = false
+    console.log(_this.control)
+  })
+}
 //遊戲開始 按鈕 及 倒數
 Game.prototype.startGame = function(){
   let _this = this// 在gameStart 裡面的 function  this會指向 自己的function 所以要在設定一個_this 來指定 Game 的this
+
   var time = 3
   var grade = 0
-  
-  
+
   var gameStart = setInterval(function(){    
     $(".infoText").text(time)
     time -= 1
@@ -164,6 +190,8 @@ Game.prototype.startGame = function(){
       tube6 = new TubeTop({x: 660},180,".tube6")
       _this.startGameMain()     
       clearInterval(gameStart)
+      $(".grade h2").text(grade)
+      $(".actionGrade").text(grade)
       $(".info").css("display","none")
       $(".infoText").css("display","none")
       $(".info .start").css("display","none")
@@ -173,9 +201,10 @@ Game.prototype.startGame = function(){
 //重新開始
 Game.prototype.restartGame = function(){
   let _this = this// 在gameStart 裡面的 function  this會指向 自己的function 所以要在設定一個_this 來指定 Game 的this
+
   var time = 3
-  var grade = 0
-  
+  _this.grade = 0
+  _this.addSpeed = 0
   
   var gameStart = setInterval(function(){
     $(".infoText").css("display","block")
@@ -192,7 +221,8 @@ Game.prototype.restartGame = function(){
       tube6 = new TubeTop({x: 660},180,".tube6")
       _this.startGameMain()     
       clearInterval(gameStart)
-      $(".grade h3").text(grade)
+      $(".grade h2").text(_this.grade)
+      $(".actionGrade").text(_this.grade)
       $(".info").css("display","none")
       $(".infoText").css("display","none")
       $(".info .start").css("display","none")
@@ -233,19 +263,19 @@ Game.prototype.startGameMain = function(){
     if(tube1.position.x <= bird.position.x && _this.gradeOpen == true){
       _this.grade++
       _this.gradeOpen = false
-      $(".grade h3").text(_this.grade)
+      $(".grade h2").text(_this.grade)
       $(".actionGrade").text(_this.grade)
     }   
     if(tube3.position.x <= bird.position.x && _this.gradeOpen == true){
       _this.grade++
       _this.gradeOpen = false
-      $(".grade h3").text(_this.grade)
+      $(".grade h2").text(_this.grade)
       $(".actionGrade").text(_this.grade)
     }  
     if(tube5.position.x <= bird.position.x && _this.gradeOpen == true){
       _this.grade++
       _this.gradeOpen = false
-      $(".grade h3").text(_this.grade)
+      $(".grade h2").text(_this.grade)
       $(".actionGrade").text(_this.grade)
     }        
     
@@ -295,6 +325,8 @@ Game.prototype.startGameMain = function(){
     }
     
     //按鍵向上功能及自動向下
+    
+    
     if(_this.control["ArrowUp"]){
       if(_this.grade >= 30){
         bird.position.y -= 10
@@ -310,6 +342,20 @@ Game.prototype.startGameMain = function(){
       bird.position.y -= 6
       bird.rotate = -30
     }
+    else if(_this.control["mousedown"]){
+      if(_this.grade >= 30){
+        bird.position.y -= 10
+      }
+      bird.position.y -= 6
+      bird.rotate = -30
+    }
+    else if(_this.control["touchstart"]){
+      if(_this.grade >= 30){
+        bird.position.y -= 10
+      }
+      bird.position.y -= 6
+      bird.rotate = -30
+    }
     else{
       if(_this.grade >= 30){
         bird.position.y += 10
@@ -318,7 +364,7 @@ Game.prototype.startGameMain = function(){
       bird.rotate = 30
       //console.log(bird.position.y)      
     }
-    
+
     //更新css 
     bird.update()
     tube1.update()
@@ -330,5 +376,4 @@ Game.prototype.startGameMain = function(){
 
   },30) 
 }
-
 var game = new Game()
